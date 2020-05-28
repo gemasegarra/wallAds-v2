@@ -4,6 +4,9 @@ import axios from 'axios';
 export const SIGN_IN_REQUEST = 'SIGN_IN_REQUEST';
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
 export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE';
+export const LOAD_ADS_REQUEST = 'LOAD_ADS_REQUEST';
+export const LOAD_ADS_SUCCESS = 'LOAD_ADS_SUCCESS';
+export const LOAD_ADS_FAILURE = 'LOAD_ADS_FAILURE';
 
 export function signInRequest() {
   return {
@@ -46,4 +49,20 @@ export function signIn(username, password) {
   };
 }
 
+const loadAdsRequest = () => ({
+  type: LOAD_ADS_REQUEST,
+});
 
+const loadAdsSuccess = (ads) => ({
+  type: LOAD_ADS_SUCCESS,
+  ads: ads,
+});
+
+export function loadAds(dispatch) {
+  dispatch(loadAdsRequest());
+  axios.get('http://34.89.93.186:8080/apiv1/anuncios', {
+    withCredentials: true,
+  }).then(res => {
+    dispatch(loadAdsSuccess(res.data.results));
+  })
+}

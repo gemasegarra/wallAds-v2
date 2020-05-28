@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Select from 'react-select';
 
 import { connect } from 'react-redux';
+import { loadAds } from '../../Actions/actions';
 
 import axios from 'axios';
 
@@ -27,29 +28,17 @@ class AdList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: '',
+      search: '',
       selectedTag: '',
       typeOfAd: Boolean,
-      ads: [],
     }
-    this.handleChange = this.handleChange.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  componentDidMount() {
-    axios.get('http://34.89.93.186:8080/apiv1/anuncios', {
-      withCredentials: true,
-    })
-      .then(res => {
-        console.log(res.data.results);
-        this.setState({
-          ads: res.data.results
-        })
 
-      })
+    props.onMount();
   }
 
-
-  handleChange(e) {
+  handleSearchChange(e) {
     this.setState({ value: e.target.value });
   };
 
@@ -110,7 +99,7 @@ class AdList extends Component {
 
   render() {
 
-    const { ads } = this.state;
+    const { ads } = this.props.ads;
     const allAds = ads.length ? (ads.map(ad => {
       return (
         <AdCard key={ad._id}>
@@ -131,14 +120,13 @@ class AdList extends Component {
     })) : (<NoAds>You need to <Link to="/SignIn"> sign in</Link> to see our ads!</NoAds>)
     return (
       <>
-        <p>Hi, {this.props.username}</p>
         <Header />
         <FilterContainer>
           <SearchForm onSubmit={this.handleSubmit}>
             <SearchContainer>
               <input
-                type='text' value={this.state.value}
-                onChange={this.handleChange} />
+                type='text' value={this.state.search}
+                onChange={this.handleSearchChange} />
               <button type='submit' value='search'>
                 Search
               </button>
@@ -171,10 +159,11 @@ class AdList extends Component {
 
 const mapStateToProps = state => ({
   username: state.username,
+  ads: state.ads,
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  onMount: () => loadAds(dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdList);
