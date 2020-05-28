@@ -7,7 +7,9 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './Reducers/reducers';
 
-const store = createStore(reducer);
+const store = createStore(reducer, {
+  username: localStorage.username,
+});
 
 ReactDOM.render(<Provider store={store}>
   <App />
