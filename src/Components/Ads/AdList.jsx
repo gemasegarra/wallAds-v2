@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import Select from 'react-select';
 
 import { connect } from 'react-redux';
-import { loadAds } from '../../Actions/actions';
-
-import axios from 'axios';
+import {
+  loadAds,
+  selectTag,
+  selectAdType,
+  submitSearch,
+} from '../../Actions/actions';
 
 import { Grid, AdCard, AdContent, CardTitle, Type, Price, Picture, Button, NoAds, StyledLink } from '../StyledComponents/Ads';
 import { FilterContainer, SearchForm, SearchContainer, SelectForm } from '../StyledComponents/Forms'
@@ -29,77 +32,19 @@ class AdList extends Component {
     super(props)
     this.state = {
       search: '',
-      selectedTag: '',
-      typeOfAd: Boolean,
     }
     this.handleSearchChange = this.handleSearchChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
 
     props.onMount();
   }
 
   handleSearchChange(e) {
-    this.setState({ value: e.target.value });
-  };
-
-  handleTagChange = selectedTag => {
-    this.setState(
-      { selectedTag },
-      () => axios.get(`http://34.89.93.186:8080/apiv1/anuncios?tag=${this.state.selectedTag.value}`, {
-        withCredentials: true,
-      })
-        .then(res => {
-          this.setState({
-            ads: res.data.results
-          })
-        })
-    )
-  };
-
-  buyingType() {
-    axios.get('http://34.89.93.186:8080/apiv1/anuncios?venta=false', {
-      withCredentials: true,
-    })
-      .then(res => {
-        this.setState({
-          ads: res.data.results
-        })
-      })
-  };
-
-  sellingType() {
-    axios.get('http://34.89.93.186:8080/apiv1/anuncios?venta=true', {
-      withCredentials: true,
-    })
-      .then(res => {
-        this.setState({
-          ads: res.data.results
-        })
-      })
-  };
-
-  handleTypeChange = typeOfAd => {
-    this.setState(
-      { typeOfAd },
-      () => typeOfAd.value === 'buy' ? this.sellingType() : this.buyingType()
-    )
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    axios.get(`http://34.89.93.186:8080/apiv1/anuncios?name=${this.state.value}`, {
-      withCredentials: true,
-    })
-      .then(res => {
-        this.setState({
-          ads: res.data.results
-        })
-      })
+    this.setState({ search: e.target.value });
   };
 
   render() {
 
-    const { ads } = this.props.ads;
+    const { ads, selectedTag, typeOfAd, handleTagChange, handleTypeChange, handleSubmitSearch } = this.props;
     const allAds = ads.length ? (ads.map(ad => {
       return (
         <AdCard key={ad._id}>
@@ -122,7 +67,10 @@ class AdList extends Component {
       <>
         <Header />
         <FilterContainer>
-          <SearchForm onSubmit={this.handleSubmit}>
+          <SearchForm onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmitSearch(this.state.search);
+          }}>
             <SearchContainer>
               <input
                 type='text' value={this.state.search}
@@ -133,14 +81,14 @@ class AdList extends Component {
             </SearchContainer>
             <SelectForm>
               <Select placeholder='Choose a tag...'
-                value={this.state.selectedTag}
-                onChange={this.handleTagChange}
+                value={selectedTag}
+                onChange={({ value }) => handleTagChange(value)}
                 options={tags} />
             </SelectForm>
             <SelectForm>
               <Select placeholder='Buying or selling...?'
-                value={this.state.typeOfAd}
-                onChange={this.handleTypeChange}
+                value={typeOfAd}
+                onChange={({ value }) => handleTypeChange(value)}
                 options={type} />
             </SelectForm>
             <SelectForm>
@@ -159,11 +107,14 @@ class AdList extends Component {
 
 const mapStateToProps = state => ({
   username: state.username,
-  ads: state.ads,
+  ...state.ads,
 });
 
 const mapDispatchToProps = dispatch => ({
   onMount: () => loadAds(dispatch),
+  handleTagChange: (tag) => selectTag(tag, dispatch),
+  handleTypeChange: (type) => selectAdType(type, dispatch),
+  handleSubmitSearch: (search) => submitSearch(search, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdList);
