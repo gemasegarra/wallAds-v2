@@ -9,7 +9,7 @@ import reducer from './Reducers/reducers';
 
 const store = createStore(reducer, {
   username: localStorage.username,
-});
+},  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(<Provider store={store}>
   <App />
