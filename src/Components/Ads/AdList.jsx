@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 
+import { connect } from 'react-redux';
 
 import axios from 'axios';
-
 
 import { Grid, AdCard, AdContent, CardTitle, Type, Price, Picture, Button, NoAds, StyledLink } from '../StyledComponents/Ads';
 import { FilterContainer, SearchForm, SearchContainer, SelectForm } from '../StyledComponents/Forms'
@@ -22,7 +22,6 @@ const type = [
   { value: 'buy', label: 'Buying' },
   { value: 'sell', label: 'Selling' },
 ];
-
 
 class AdList extends Component {
   constructor(props) {
@@ -45,7 +44,7 @@ class AdList extends Component {
         this.setState({
           ads: res.data.results
         })
-       
+
       })
   }
 
@@ -132,31 +131,32 @@ class AdList extends Component {
     })) : (<NoAds>You need to <Link to="/SignIn"> sign in</Link> to see our ads!</NoAds>)
     return (
       <>
+        <p>Hi, {this.props.username}</p>
         <Header />
-          <FilterContainer>
-            <SearchForm onSubmit={this.handleSubmit}>
-              <SearchContainer>
-                <input
-                  type='text' value={this.state.value}
-                  onChange={this.handleChange} />
-                <button type='submit' value='search'>
-                  Search
+        <FilterContainer>
+          <SearchForm onSubmit={this.handleSubmit}>
+            <SearchContainer>
+              <input
+                type='text' value={this.state.value}
+                onChange={this.handleChange} />
+              <button type='submit' value='search'>
+                Search
               </button>
             </SearchContainer>
             <SelectForm>
               <Select placeholder='Choose a tag...'
                 value={this.state.selectedTag}
                 onChange={this.handleTagChange}
-                options={tags}/>
+                options={tags} />
             </SelectForm>
             <SelectForm>
               <Select placeholder='Buying or selling...?'
                 value={this.state.typeOfAd}
                 onChange={this.handleTypeChange}
-                options={type}/>
+                options={type} />
             </SelectForm>
             <SelectForm>
- 
+
             </SelectForm>
           </SearchForm>
         </FilterContainer>
@@ -169,4 +169,12 @@ class AdList extends Component {
   }
 }
 
-export default AdList;
+const mapStateToProps = state => ({
+  username: state.username,
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdList);
