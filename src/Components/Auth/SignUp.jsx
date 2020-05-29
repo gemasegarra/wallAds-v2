@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import { Login, FormContainer, Form, InputField, Button, CreateAccount, StyledLink } from '../StyledComponents/Forms';
 
+import MyForm from './Form';
 
 function SignUp(props) {
   const [username, setUsername] = useState();
@@ -37,14 +38,20 @@ function SignUp(props) {
         <Login>Sign up for WallAds</Login>
         <FormContainer>
           <Form onSubmit={handleSubmit}>
-            <InputField>
-              <label htmlFor='username'>Username:</label>
-              <input type='text' id='username' onChange={handleChange(setUsername)}></input>
-            </InputField>
-            <InputField>
-              <label htmlFor='password'>Password: </label>
-              <input type='password' id='password' onChange={handleChange(setPassword)}></input>
-            </InputField>
+           <MyForm
+           label='Username:'
+           id='username'
+           name='username'
+           type='text'
+           onChange={handleChange(setUsername)}
+           />
+          <MyForm
+           label='Password::'
+           id='password'
+           name='password'
+           type='password'
+           onChange={handleChange(setPassword)}
+           />
             <Button>Sign up</Button>
           </Form>
         </FormContainer>
