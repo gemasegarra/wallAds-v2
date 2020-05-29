@@ -34,9 +34,11 @@ export function signIn(username, password) {
   return (dispatch) => {
     dispatch(signInRequest());
 
-    axios.post('http://34.89.93.186:8080/apiv1/login', {
+    axios.post('http://34.89.93.186:8080/apiv1/login',  {
       username: username,
       password: password
+    }, {
+      withCredentials: true,
     }).then(({ data }) => {
       let { success, error } = data;
       if (!success) {
