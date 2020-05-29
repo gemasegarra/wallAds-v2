@@ -1,8 +1,9 @@
-# WallAds!
+# WallAds v2!
 > Your app to buy and sell anything you want! 
 
 ![img](https://github.com/gemasegarra/wallads/blob/master/public/img/walladspic.png)
 
+Second version of WallAds, this time with **Redux** and testing! 
 
 WallAds! is an app that shows a list of (fake) ads loading data via a REST API and it lets users create and edit their own ads. 
 
@@ -45,7 +46,8 @@ Live version: *coming soon* 🚀
 
 ## Built with 
 
-- React ⚛️
+- React ⚛️ (SignUp & SignIn components have been refactored to React Hooks)
+- Redux
 - Styled Components 💅
 
 ## Author 
@@ -57,4 +59,4 @@ Live version: *coming soon* 🚀
 
 ---
 
-(Práctica realizada para Fundamentos de React)
+(Práctica realizada para React Avanzado)
