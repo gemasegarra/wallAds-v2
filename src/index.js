@@ -5,7 +5,7 @@ import App from './App';
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import reducer from './Reducers/reducers';
+import reducer from './Store/reducers';
 
 const store = createStore(reducer, {
   username: localStorage.username,
