@@ -1,13 +1,8 @@
 import { combineReducers } from 'redux';
-import {
-  SIGN_IN_SUCCESS,
-  LOAD_ADS_SUCCESS,
-  SELECT_TAG,
-  SELECT_AD_TYPE,
-} from '../Actions/actions';
+import * as TYPES from '../Actions/types';
 
 function username(state = null, action) {
-  if (action.type === SIGN_IN_SUCCESS) {
+  if (action.type === TYPES.SIGN_IN_SUCCESS) {
     return action.username;
   }
   return state;
@@ -20,13 +15,13 @@ const adsInitialState = {
 };
 
 function ads(state = adsInitialState, action) {
-  if (action.type === LOAD_ADS_SUCCESS) {
+  if (action.type === TYPES.LOAD_ADS_SUCCESS) {
     return { ...state, ads: action.ads };
   }
-  if (action.type === SELECT_TAG) {
+  if (action.type === TYPES.SELECT_TAG) {
     return { ...state, tag: action.tag };
   }
-  if (action.type === SELECT_AD_TYPE) {
+  if (action.type === TYPES.SELECT_AD_TYPE) {
     return { ...state, typeOfAd: action.adType };
   }
   return state;

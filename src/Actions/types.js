@@ -1,0 +1,8 @@
+export const SIGN_IN_REQUEST = 'SIGN_IN_REQUEST';
+export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
+export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE';
+export const LOAD_ADS_REQUEST = 'LOAD_ADS_REQUEST';
+export const LOAD_ADS_SUCCESS = 'LOAD_ADS_SUCCESS';
+export const LOAD_ADS_FAILURE = 'LOAD_ADS_FAILURE';
+export const SELECT_TAG = 'SELECT_TAG';
+export const SELECT_AD_TYPE = 'SELECT_ADD_TYPE';
