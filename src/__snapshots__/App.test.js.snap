@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+Array [
+  <h1
+    className="sc-AxjAm imCebB"
+  >
+    Sign up for WallAds
+  </h1>,
+  <div
+    className="sc-AxirZ gZZGMw"
+  >
+    <form
+      className="sc-AxiKw eKIdef"
+      onSubmit={[Function]}
+    >
+      <div
+        className="sc-AxhCb cmWsZm"
+      >
+        <label
+          htmlFor="username"
+        >
+          Username:
+        </label>
+        <input
+          id="username"
+          name="username"
+          onChange={[Function]}
+          type="text"
+        />
+      </div>
+      <div
+        className="sc-AxhCb cmWsZm"
+      >
+        <label
+          htmlFor="password"
+        >
+          Password::
+        </label>
+        <input
+          id="password"
+          name="password"
+          onChange={[Function]}
+          type="password"
+        />
+      </div>
+      <button
+        className="sc-AxhUy cNLLcY"
+      >
+        Sign up
+      </button>
+    </form>
+  </div>,
+  <div
+    className="sc-AxgMl ehNPYX"
+  >
+    Already have an account?
+  </div>,
+  <div
+    className="sc-AxheI cxYFzN"
+  >
+    <a
+      href="/SignIn"
+      onClick={[Function]}
+    >
+       Sign in here
+    </a>
+    .
+  </div>,
+  <nav
+    className="sc-fzoiQi dmqbNx"
+  >
+    <p>
+      Coded by
+      <a
+        href="https://github.com/gemasegarra"
+      >
+         Gema S.
+      </a>
+      | 2020
+    </p>
+  </nav>,
+]
+`;
