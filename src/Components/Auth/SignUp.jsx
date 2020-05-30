@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-import { Login, FormContainer, Form, InputField, Button, CreateAccount, StyledLink } from '../StyledComponents/Forms';
+import { Login, FormContainer, Form, Button, CreateAccount, StyledLink } from '../StyledComponents/Forms';
 
 import MyForm from './Form';
 

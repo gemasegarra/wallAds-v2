@@ -5,7 +5,7 @@ import { signIn } from '../../Actions/actions';
 import { connect } from 'react-redux';
 
 import MyForm from './Form';
-import { Login, FormContainer, Form, InputField, Button, CreateAccount, StyledLink } from '../StyledComponents/Forms';
+import { Login, FormContainer, Form, Button, CreateAccount, StyledLink } from '../StyledComponents/Forms';
 
 function SignIn(props) {
   const [username, setUsername] = useState();

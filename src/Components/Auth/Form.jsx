@@ -7,10 +7,8 @@ const MyForm = ({
   name,
   type,
   onChange,
-  onSubmit,
   children,
   label,
-  ...props
 }) => {
   
   return (
@@ -29,15 +27,14 @@ const MyForm = ({
 }
 
 MyForm.defaultProps = {
-  type: "text",
-  className: ""
+  type: 'text',
+  className: ''
 }
 
 MyForm.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['text', 'number', 'password']),
   onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
 }
 
 export default MyForm;
