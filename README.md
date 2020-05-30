@@ -3,7 +3,7 @@
 
 ![img](https://github.com/gemasegarra/wallads/blob/master/public/img/walladspic.png)
 
-Second version of WallAds, this time with **Redux** and testing! 
+Second version of WallAds, this time with **Redux** and (some) testing with Jest! 
 
 WallAds! is an app that shows a list of (fake) ads loading data via a REST API and it lets users create and edit their own ads. 
 
@@ -38,7 +38,7 @@ To run this project locally do the following:
 - Use of several filters at the same time as allowed by the API (for instance search by tag and type of ad) 
 - Design improvements
 - Accessibility improvements
-- Code refactoring 
+- Code refactoring!
 
 ## Demo 
 
