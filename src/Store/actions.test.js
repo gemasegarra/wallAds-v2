@@ -3,6 +3,10 @@ import * as TYPES from './types';
 
 
 import axios from 'axios';
+import configureStore from 'redux-mock-store';
+
+const middlewares = []
+const mockStore = configureStore(middlewares)
 
 jest.mock('axios');
 
@@ -28,7 +32,6 @@ const fetchData = async id => {
     }  
     );
 };
-
 
 describe('Example of async test', () => {
   test('Fetch data with axios', async ()=> {
@@ -56,3 +59,14 @@ describe('Example of async test', () => {
   });
   }
   )
+
+  const signInRequest = () => ({ type: TYPES.SIGN_IN_REQUEST })
+
+it('should dispatch action', () => {
+  const initialState = {}
+  const store = mockStore(initialState)
+  store.dispatch(signInRequest())
+  const actions = store.getActions()
+  const expectedPayload = { type: TYPES.SIGN_IN_REQUEST }
+  expect(actions).toEqual([expectedPayload])
+})
