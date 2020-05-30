@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { signIn } from '../../Actions/actions';
+import { signIn } from '../../Store/actions';
 
 import { connect } from 'react-redux';
 

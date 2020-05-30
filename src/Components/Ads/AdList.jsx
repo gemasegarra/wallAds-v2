@@ -8,7 +8,7 @@ import {
   selectTag,
   selectAdType,
   submitSearch,
-} from '../../Actions/actions';
+} from '../../Store/actions';
 
 import { Grid, AdCard, AdContent, CardTitle, Type, Price, Picture, Button, NoAds, StyledLink } from '../StyledComponents/Ads';
 import { FilterContainer, SearchForm, SearchContainer, SelectForm } from '../StyledComponents/Forms'

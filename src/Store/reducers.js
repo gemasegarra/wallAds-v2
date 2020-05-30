@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import * as TYPES from '../Actions/types';
+import * as TYPES from './types';
 
-function username(state = null, action) {
+export function username(state = null, action) {
   if (action.type === TYPES.SIGN_IN_SUCCESS) {
     return action.username;
   }
@@ -14,7 +14,7 @@ const adsInitialState = {
   typeOfAd: Boolean,
 };
 
-function ads(state = adsInitialState, action) {
+export function ads(state = adsInitialState, action) {
   if (action.type === TYPES.LOAD_ADS_SUCCESS) {
     return { ...state, ads: action.ads };
   }
