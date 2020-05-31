@@ -6,3 +6,8 @@ export const LOAD_ADS_SUCCESS = 'LOAD_ADS_SUCCESS';
 export const LOAD_ADS_FAILURE = 'LOAD_ADS_FAILURE';
 export const SELECT_TAG = 'SELECT_TAG';
 export const SELECT_AD_TYPE = 'SELECT_ADD_TYPE';
+/* 
+export const CREATE_AD_REQUEST = 'CREATE_AD_REQUEST';
+export const CREATE_AD_SUCCESS = 'CREATE_AD_SUCCESS';
+export const CREATE_AD_FAILURE = 'CREATE_AD_FAILURE';
+*/
