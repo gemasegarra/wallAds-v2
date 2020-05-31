@@ -46,7 +46,7 @@ function SignUp(props) {
            onChange={handleChange(setUsername)}
            />
           <MyForm
-           label='Password::'
+           label='Password:'
            id='password'
            name='password'
            type='password'
