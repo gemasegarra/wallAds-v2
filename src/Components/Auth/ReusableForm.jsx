@@ -1,10 +1,10 @@
 import React, { createContext, useState, useContext, createElement } from "react";
 
-import { Form } from '../StyledCompoents/Forms'
+import { Form } from '../StyledComponents/Forms'
 
 const formContext = createContext();
 
-export function reusableForm({ initialValues, onSubmit, children }) {
+export function ReusableForm({ initialValues, onSubmit, children }) {
   const [formValues, setFormValues] = useState(initialValues);
   return (
     <formContext.Provider value={[formValues, setFormValues]}>

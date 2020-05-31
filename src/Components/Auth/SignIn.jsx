@@ -4,47 +4,33 @@ import { signIn } from '../../Store/actions';
 
 import { connect } from 'react-redux';
 
-import MyForm from './Form';
-import { Login, FormContainer, Form, Button, CreateAccount, StyledLink } from '../StyledComponents/Forms';
+import { ReusableForm, Input } from './ReusableForm';
+
+import { Login, FormContainer, InputField, Button, CreateAccount, StyledLink } from '../StyledComponents/Forms';
 
 function SignIn(props) {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
 
-  const handleChange = (setter) => (e) => {
-    setter(e.target.value);
-  };
 
-  const signIn = () => {
+
+  const handleSubmit = ({ username, password }) => {
     props.onSignIn(username, password);
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    signIn();
     props.history.push('/adlist');
   }
   return (
     <>
       <Login>Sign in to WallAds</Login>
       <FormContainer>
-        <Form onSubmit={handleSubmit}>
-        <MyForm
-           label='Username:'
-           id='username'
-           name='username'
-           type='text'
-           onChange={handleChange(setUsername)}
-           />
-          <MyForm
-           label='Password::'
-           id='password'
-           name='password'
-           type='password'
-           onChange={handleChange(setPassword)}
-           />
+        <ReusableForm onSubmit={handleSubmit} initialValues={{ username: "", password: "" }}>
+          <InputField>
+            <label htmlFor='username'>Username:</label>
+            <Input type="text" name="username" /></InputField>
+          <InputField>
+            <label htmlFor='password  '>Password:</label>
+            <Input type="password" name="password" />
+          </InputField>
+
           <Button>Sign in</Button>
-        </Form>
+        </ReusableForm>
       </FormContainer>
       <CreateAccount>New to WallAds?</CreateAccount>
       <StyledLink><Link to='/SignUp'> Register here</Link>.</StyledLink>
